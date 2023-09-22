@@ -51,4 +51,14 @@ class User
 
     return false;
   }
+  public function getUser()
+  {
+    $sql = 'SELECT * FROM users WHERE id = :id';
+    $stm = $this->connection->prepare($sql);
+
+    $stm->bindParam(':id', $this->id);
+
+    $stm->execute();
+    return $stm;
+  }
 }
