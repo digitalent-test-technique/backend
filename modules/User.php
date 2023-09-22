@@ -61,4 +61,32 @@ class User
     $stm->execute();
     return $stm;
   }
+  public function isEmailExists()
+  {
+
+    $sql = 'SELECT id, first_name, last_name, password
+            FROM users
+            WHERE email = ?
+            LIMIT 0,1';
+
+    $stmt = $this->connection->prepare($sql);
+
+    $this->email = htmlspecialchars(strip_tags($this->email));
+
+    $stmt->bindParam(1, $this->email);
+
+    $stmt->execute();
+
+    $num = $stmt->rowCount();
+    if ($num > 0) {
+
+      $row = $stmt->fetch(PDO::FETCH_ASSOC);
+      $this->id = $row['id'];
+      $this->first_name = $row['first_name'];
+      $this->last_name = $row['last_name'];
+      $this->password = $row['password'];
+      return true;
+    }
+    return false;
+  }
 }
