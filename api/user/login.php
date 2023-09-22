@@ -39,7 +39,7 @@ if ($email_exists && password_verify($data->password, $user->password)) {
   $jwt = JWT::encode($token, $key);
   http_response_code(200);
   echo json_encode(array(
-    "message" => "Login successfully",
+    "message" => "Connexion réussie.",
     "token" => $jwt,
     "id" => $user->id
   ));
@@ -47,6 +47,6 @@ if ($email_exists && password_verify($data->password, $user->password)) {
   http_response_code(401);
   echo json_encode(array(
     "success" => false,
-    "message" => "Login failed. your email or password is incorrect"
+    "message" => "Échec de la connexion. Votre adresse e-mail ou votre mot de passe est incorrect."
   ));
 }

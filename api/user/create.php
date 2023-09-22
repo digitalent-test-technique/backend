@@ -36,19 +36,19 @@ if (
   if ($user->isEmailExists()) {
     http_response_code(400);
     echo json_encode(array(
-      "message" => "The email already exist, please try with another email"
+      "message" => "L'adresse e-mail existe déjà, veuillez essayer avec une autre adresse e-mail."
     ));
   } else if (
     $user->create()
   ) {
     http_response_code(200);
     echo json_encode(array(
-      "message" => "User Created Successfully"
+      "message" => "Utilisateur créé avec succès."
     ));
   } else {
     http_response_code(400);
     echo json_encode(array(
-      "message" => "Unable to create user."
+      "message" => "Impossible de créer l'utilisateur."
     ));
   }
 }

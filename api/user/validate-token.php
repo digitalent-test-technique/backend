@@ -23,20 +23,20 @@ if ($token) {
     $decoded = JWT::decode($token, $key, array('HS256'));
     http_response_code(200);
     echo json_encode(array(
-      "message" => "Access granted.",
+      "message" => "Accès accordé.",
       "data" => $decoded->data
     ));
   } catch (Exception $ex) {
 
     http_response_code(401);
     echo json_encode(array(
-      "message" => "Access denied.",
+      "message" => "Accès refusé.",
       "error" => $ex->getMessage()
     ));
   }
 } else {
   http_response_code(400);
   echo json_encode(array(
-    "message" => "Something was wrong, please try again."
+    "message" => "Quelque chose s'est mal passé, veuillez réessayer."
   ));
 }
